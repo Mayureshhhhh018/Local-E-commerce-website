@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LocalMart - Local E-Commerce</title>
+
+
+    <style>
+
+        /* ==============================
+           BASIC SETTINGS
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f7f6;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        section {
+            padding: 60px 7%;
+        }
+
+
+        /* ==============================
+           NAVIGATION BAR
+        ============================== */
+
+        nav {
+            background-color: #176b5b;
+            color: white;
+
+            padding: 15px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffd166;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffd166;
+        }
+
+
+        /* ==============================
+           HERO SECTION
+        ============================== */
+
+        .hero {
+            min-height: 470px;
+
+            padding: 80px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #dff5ed,
+                    #fff3d6
+                );
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 55px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: #176b5b;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .hero-image {
+            font-size: 150px;
+        }
+
+        .button {
+            display: inline-block;
+
+            background-color: #176b5b;
+            color: white;
+
+            padding: 12px 25px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #0d5144;
+        }
+
+
+        /* ==============================
+           COMMON TITLE
+        ============================== */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            color: #176b5b;
+            font-size: 35px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+
+        /* ==============================
+           CATEGORY SECTION
+        ============================== */
+
+        .categories {
+            display: grid;
+
+            grid-template-columns:
+                repeat(6, 1fr);
+
+            gap: 18px;
+        }
+
+        .category {
+            background-color: white;
+
+            padding: 25px 10px;
+
+            text-align: center;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 45px;
+        }
+
+        .category h3 {
+            margin-top: 10px;
+        }
+
+
+        /* ==============================
+           SEARCH AREA
+        ============================== */
+
+        .search-box {
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 30px;
+        }
+
+        .search-box input,
+        .search-box select {
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+        }
+
+        .search-box input {
+            flex: 1;
+        }
+
+
+        /* ==============================
+           PRODUCTS
+        ============================== */
+
+        .products {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 22px;
+        }
+
+        .product-card {
+            background-color: white;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 170px;
+
+            background-color: #eaf4f0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 75px;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-category {
+            color: #176b5b;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+        .product-info h3 {
+            margin: 5px 0;
+        }
+
+        .price {
+            color: #176b5b;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            margin: 10px 0;
+        }
+
+        .available {
+            color: green;
+
+            font-size: 14px;
+        }
+
+        .product-buttons {
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 15px;
+        }
+
+        .product-buttons a {
+            flex: 1;
+
+            text-align: center;
+
+            padding: 9px;
+
+            border-radius: 6px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        .details-button {
+            background-color: #eeeeee;
+
+            color: #333;
+        }
+
+        .cart-button {
+            background-color: #176b5b;
+
+            color: white;
+        }
+
+
+        /* ==============================
+           PRODUCT DETAILS
+        ============================== */
+
+        .details-container {
+            max-width: 950px;
+
+            margin: auto;
+
+            background-color: white;
+
+            padding: 35px;
+
+            border-radius: 15px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 40px;
+        }
+
+        .details-image {
+            background-color: #eaf4f0;
+
+            border-radius: 12px;
+
+            min-height: 350px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 150px;
+        }
+
+        .details-content h2 {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+        .details-content p {
+            color: #666;
+
+            margin: 15px 0;
+        }
+
+        .quantity-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 20px 0;
+        }
+
+        .quantity-box input {
+            width: 70px;
+
+            padding: 10px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+        }
+
+
+        /* ==============================
+           CART
+        ============================== */
+
+        .cart-container {
+            max-width: 950px;
+
+            margin: auto;
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .cart-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 18px 0;
+
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-image {
+            width: 70px;
+
+            height: 70px;
+
+            background-color: #eaf4f0;
+
+            border-radius: 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 35px;
+        }
+
+        .cart-name {
+            flex: 1;
+        }
+
+        .quantity {
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+        }
+
+        .quantity button {
+            width: 30px;
+            height: 30px;
+
+            border: 1px solid #ccc;
+
+            background-color: white;
+
+            border-radius: 5px;
+        }
+
+        .cart-price {
+            font-weight: bold;
+        }
+
+        .remove-button {
+            color: red;
+
+            border: none;
+
+            background: none;
+
+            font-weight: bold;
+        }
+
+        .cart-summary {
+            text-align: right;
+
+            margin-top: 25px;
+        }
+
+        .cart-summary h2 {
+            color: #176b5b;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* ==============================
+           CHECKOUT
+        ============================== */
+
+        .checkout-form {
+            max-width: 700px;
+
+            margin: auto;
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+        }
+
+        .delivery-option {
+            margin: 10px 0;
+        }
+
+        .delivery-option label {
+            font-weight: normal;
+        }
+
+
+        /* ==============================
+           ABOUT SECTION
+        ============================== */
+
+        .about {
+            background-color: #eaf4f0;
+        }
+
+        .about-container {
+            max-width: 900px;
+
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .about-container h2 {
+            color: #176b5b;
+
+            margin-bottom: 15px;
+        }
+
+        .about-container p {
+            color: #555;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* ==============================
+           CONTACT
+        ============================== */
+
+        .contact-container {
+            max-width: 700px;
+
+            margin: auto;
+        }
+
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            background-color: #17231f;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+        footer h2 {
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            color: #ccc;
+        }
+
+
+        /* ==============================
+           RESPONSIVE DESIGN
+        ============================== */
+
+        @media (max-width: 1000px) {
+
+            .products {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .categories {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 12px;
+            }
+
+            .hero {
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 30px;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .hero-image {
+                font-size: 90px;
+            }
+
+            .products {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .categories {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .details-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                flex-wrap: wrap;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            section {
+                padding: 40px 5%;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .hero-content h1 {
+                font-size: 34px;
+            }
+
+            .details-image {
+                min-height: 250px;
+
+                font-size: 100px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================
+     NAVIGATION
+================================== -->
+
+<nav>
+
+    <div class="logo">
+        🛒 Local<span>Mart</span>
+    </div>
+
+
+    <ul>
+
+        <li>
+            <a href="#home">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="#products">
+                Products
+            </a>
+        </li>
+
+        <li>
+            <a href="#categories">
+                Categories
+            </a>
+        </li>
+
+        <li>
+            <a href="#details">
+                Details
+            </a>
+        </li>
+
+        <li>
+            <a href="#cart">
+                Cart
+            </a>
+        </li>
+
+        <li>
+            <a href="#checkout">
+                Checkout
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- ==================================
+     HOME
+================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Shop Local,
+            <span>Shop Smart.</span>
+        </h1>
+
+        <p>
+            Welcome to LocalMart – a simple local
+            e-commerce platform where customers can
+            discover useful products from nearby shops.
+        </p>
+
+        <a href="#products"
+           class="button">
+
+            Shop Now
+
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        🛍️
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     CATEGORIES
+================================== -->
+
+<section id="categories">
+
+    <div class="section-title">
+
+        <h2>
+            Popular Categories
+        </h2>
+
+        <p>
+            Choose products from different categories.
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+
+        <div class="category">
+
+            <div class="category-icon">
+                🥦
+            </div>
+
+            <h3>
+                Grocery
+            </h3>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-icon">
+                🎧
+            </div>
+
+            <h3>
+                Electronics
+            </h3>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-icon">
+                📚
+            </div>
+
+            <h3>
+                Stationery
+            </h3>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-icon">
+                🧴
+            </div>
+
+            <h3>
+                Personal Care
+            </h3>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-icon">
+                🏠
+            </div>
+
+            <h3>
+                Household
+            </h3>
+
+        </div>
+
+
+        <div class="category">
+
+            <div class="category-icon">
+                🍪
+            </div>
+
+            <h3>
+                Snacks
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     PRODUCTS
+================================== -->
+
+<section id="products">
+
+    <div class="section-title">
+
+        <h2>
+            Our Products
+        </h2>
+
+        <p>
+            Explore some popular LocalMart products.
+        </p>
+
+    </div>
+
+
+    <!-- Static search design -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            placeholder="🔍 Search products..."
+        >
+
+
+        <select>
+
+            <option>
+                All Categories
+            </option>
+
+            <option>
+                Grocery
+            </option>
+
+            <option>
+                Electronics
+            </option>
+
+            <option>
+                Stationery
+            </option>
+
+            <option>
+                Personal Care
+            </option>
+
+            <option>
+                Household
+            </option>
+
+            <option>
+                Snacks
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="products">
+
+
+        <!-- PRODUCT 1 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🍎
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Grocery
+                </span>
+
+                <h3>
+                    Fresh Apples
+                </h3>
+
+                <div class="price">
+                    ₹160
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 2 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🎧
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Electronics
+                </span>
+
+                <h3>
+                    Wireless Headphones
+                </h3>
+
+                <div class="price">
+                    ₹1,299
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 3 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                📓
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Stationery
+                </span>
+
+                <h3>
+                    College Notebook
+                </h3>
+
+                <div class="price">
+                    ₹80
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 4 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🧴
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Personal Care
+                </span>
+
+                <h3>
+                    Shampoo
+                </h3>
+
+                <div class="price">
+                    ₹220
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 5 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                💡
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Household
+                </span>
+
+                <h3>
+                    LED Bulb
+                </h3>
+
+                <div class="price">
+                    ₹150
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 6 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🍟
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Snacks
+                </span>
+
+                <h3>
+                    Potato Chips
+                </h3>
+
+                <div class="price">
+                    ₹50
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 7 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🍚
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Grocery
+                </span>
+
+                <h3>
+                    Rice 5kg
+                </h3>
+
+                <div class="price">
+                    ₹420
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 8 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🔌
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Electronics
+                </span>
+
+                <h3>
+                    USB Cable
+                </h3>
+
+                <div class="price">
+                    ₹199
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 9 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🖊️
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Stationery
+                </span>
+
+                <h3>
+                    Ball Pen Pack
+                </h3>
+
+                <div class="price">
+                    ₹60
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 10 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🧼
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Personal Care
+                </span>
+
+                <h3>
+                    Hand Wash
+                </h3>
+
+                <div class="price">
+                    ₹110
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 11 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                📦
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Household
+                </span>
+
+                <h3>
+                    Storage Box
+                </h3>
+
+                <div class="price">
+                    ₹299
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT 12 -->
+
+        <div class="product-card">
+
+            <div class="product-image">
+                🍫
+            </div>
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    Snacks
+                </span>
+
+                <h3>
+                    Chocolate Bar
+                </h3>
+
+                <div class="price">
+                    ₹90
+                </div>
+
+                <p class="available">
+                    ✓ Available
+                </p>
+
+                <div class="product-buttons">
+
+                    <a href="#details"
+                       class="details-button">
+                        Details
+                    </a>
+
+                    <a href="#cart"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     PRODUCT DETAILS
+================================== -->
+
+<section id="details">
+
+    <div class="section-title">
+
+        <h2>
+            Product Details
+        </h2>
+
+        <p>
+            Example product details.
+        </p>
+
+    </div>
+
+
+    <div class="details-container">
+
+
+        <div class="details-image">
+
+            🎧
+
+        </div>
+
+
+        <div class="details-content">
+
+            <p class="product-category">
+                ELECTRONICS
+            </p>
+
+            <h2>
+                Wireless Headphones
+            </h2>
+
+            <div class="price">
+                ₹1,299
+            </div>
+
+            <p>
+                Comfortable wireless headphones
+                suitable for music, online classes
+                and entertainment.
+            </p>
+
+            <p>
+                <strong>Availability:</strong>
+                <span class="available">
+                    In Stock
+                </span>
+            </p>
+
+            <p>
+                <strong>Features:</strong>
+            </p>
+
+            <ul>
+
+                <li>
+                    Wireless connectivity
+                </li>
+
+                <li>
+                    Comfortable ear cushions
+                </li>
+
+                <li>
+                    Rechargeable battery
+                </li>
+
+                <li>
+                    Suitable for students
+                </li>
+
+            </ul>
+
+
+            <div class="quantity-box">
+
+                <label>
+                    Quantity:
+                </label>
+
+                <input
+                    type="number"
+                    value="1"
+                    min="1"
+                >
+
+            </div>
+
+
+            <a href="#cart"
+               class="button">
+
+                Add to Cart
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     CART
+================================== -->
+
+<section id="cart">
+
+    <div class="section-title">
+
+        <h2>
+            Shopping Cart
+        </h2>
+
+        <p>
+            Sample shopping cart for demonstration.
+        </p>
+
+    </div>
+
+
+    <div class="cart-container">
+
+
+        <!-- Cart Item 1 -->
+
+        <div class="cart-item">
+
+
+            <div class="cart-image">
+                🎧
+            </div>
+
+
+            <div class="cart-name">
+
+                <h3>
+                    Wireless Headphones
+                </h3>
+
+                <p>
+                    Electronics
+                </p>
+
+            </div>
+
+
+            <div class="quantity">
+
+                <button>
+                    −
+                </button>
+
+                <strong>
+                    1
+                </strong>
+
+                <button>
+                    +
+                </button>
+
+            </div>
+
+
+            <div class="cart-price">
+                ₹1,299
+            </div>
+
+
+            <button
+                class="remove-button">
+
+                Remove
+
+            </button>
+
+        </div>
+
+
+        <!-- Cart Item 2 -->
+
+        <div class="cart-item">
+
+
+            <div class="cart-image">
+                📓
+            </div>
+
+
+            <div class="cart-name">
+
+                <h3>
+                    College Notebook
+                </h3>
+
+                <p>
+                    Stationery
+                </p>
+
+            </div>
+
+
+            <div class="quantity">
+
+                <button>
+                    −
+                </button>
+
+                <strong>
+                    2
+                </strong>
+
+                <button>
+                    +
+                </button>
+
+            </div>
+
+
+            <div class="cart-price">
+                ₹160
+            </div>
+
+
+            <button
+                class="remove-button">
+
+                Remove
+
+            </button>
+
+        </div>
+
+
+        <!-- Cart Summary -->
+
+        <div class="cart-summary">
+
+            <p>
+                Subtotal:
+                <strong>₹1,459</strong>
+            </p>
+
+            <p>
+                Delivery:
+                <strong>₹40</strong>
+            </p>
+
+            <h2>
+                Total: ₹1,499
+            </h2>
+
+
+            <a href="#checkout"
+               class="button">
+
+                Checkout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     CHECKOUT
+================================== -->
+
+<section id="checkout">
+
+    <div class="section-title">
+
+        <h2>
+            Checkout
+        </h2>
+
+        <p>
+            Enter your delivery information.
+        </p>
+
+    </div>
+
+
+    <div class="checkout-form">
+
+
+        <div class="form-group">
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                placeholder="Enter your full name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Mobile Number
+            </label>
+
+            <input
+                type="text"
+                placeholder="Enter mobile number"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                placeholder="Enter email address"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Address
+            </label>
+
+            <textarea
+                placeholder="Enter your complete address">
+            </textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                City
+            </label>
+
+            <input
+                type="text"
+                placeholder="Enter city"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Pincode
+            </label>
+
+            <input
+                type="text"
+                placeholder="Enter pincode"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Delivery Option
+            </label>
+
+
+            <div class="delivery-option">
+
+                <input
+                    type="radio"
+                    name="delivery"
+                    checked
+                >
+
+                Local Home Delivery
+
+            </div>
+
+
+            <div class="delivery-option">
+
+                <input
+                    type="radio"
+                    name="delivery"
+                >
+
+                Store Pickup
+
+            </div>
+
+        </div>
+
+
+        <h3>
+            Order Summary
+        </h3>
+
+        <br>
+
+        <p>
+            Wireless Headphones × 1
+            <strong style="float:right;">
+                ₹1,299
+            </strong>
+        </p>
+
+        <p>
+            College Notebook × 2
+            <strong style="float:right;">
+                ₹160
+            </strong>
+        </p>
+
+        <hr>
+
+        <br>
+
+        <h3 style="color:#176b5b;">
+
+            Final Total:
+            ₹1,499
+
+        </h3>
+
+        <br>
+
+
+        <!-- Static button -->
+
+        <a href="#order-success"
+           class="button">
+
+            Place Order
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     ORDER SUCCESS
+================================== -->
+
+<section id="order-success">
+
+    <div class="section-title">
+
+        <h2>
+            ✓ Order Placed Successfully
+        </h2>
+
+        <p>
+            Thank you for shopping with LocalMart.
+        </p>
+
+        <br>
+
+        <p>
+            Your order has been received successfully.
+        </p>
+
+        <p>
+            Order ID:
+            <strong>LM2026001</strong>
+        </p>
+
+        <br>
+
+        <a href="#products"
+           class="button">
+
+            Continue Shopping
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     ABOUT
+================================== -->
+
+<section class="about">
+
+    <div class="about-container">
+
+        <h2>
+            About LocalMart
+        </h2>
+
+        <p>
+            LocalMart is a frontend-based e-commerce
+            prototype designed for connecting local shops
+            with nearby customers.
+        </p>
+
+        <p>
+            The main purpose of this project is to provide
+            a simple online shopping interface for local
+            businesses and customers.
+        </p>
+
+        <p>
+            This project demonstrates HTML5 and CSS3
+            concepts such as semantic structure,
+            forms, navigation, Flexbox, Grid and
+            responsive web design.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================
+     FOOTER
+================================== -->
+
+<footer>
+
+    <h2>
+        🛒 LocalMart
+    </h2>
+
+    <p>
+        Shop Local, Shop Smart.
+    </p>
+
+    <p>
+        Local E-Commerce Website
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 LocalMart | SYBCA Mini Project
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
